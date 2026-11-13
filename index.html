@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 8 Home Anchor - Evidence</title>
+    <style>
+        /* پالت رنگی دقیق بر اساس اعداد RGB تصویر شما */
+        :root {
+            --coral: #E66F51;      /* 230, 111, 81 */
+            --orange: #F3A261;     /* 243, 162, 97 */
+            --yellow: #E9C46B;     /* 233, 196, 107 */
+            --teal: #2A9D8E;       /* 42, 157, 142 */
+            --dark-blue: #264653;  /* 38, 70, 83 */
+            --bg-color: #fcf9f2;   /* کرم روشن */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 20px 30px;
+            border-bottom: 5px solid var(--teal);
+        }
+
+        .header-top-bar {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .logo-container {
+            background-color: white; 
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .school-logo {
+            height: 70px; 
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .class-title-container {
+            flex-grow: 1;
+        }
+
+        .class-title-container h1 {
+            font-size: 1.6rem;
+            color: var(--yellow);
+            margin-bottom: 5px;
+        }
+
+        .class-title-container .class-subtitle {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--orange);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .ib-info {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-align: left;
+            border-left: 4px solid var(--teal);
+        }
+
+        .ib-info p { margin-bottom: 5px; }
+        .ib-info strong { color: var(--orange); }
+
+        /* واکنش‌گرا برای موبایل */
+        @media (max-width: 768px) {
+            .header-top-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .ib-info {
+                text-align: center;
+                border-left: none;
+                border-top: 4px solid var(--teal);
+            }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            padding: 15px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav button {
+            background-color: #e0e0e0;
+            border: none;
+            color: var(--dark-blue);
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover { background-color: var(--yellow); }
+        nav button.active {
+            background-color: var(--teal);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .session-page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .session-page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .session-title {
+            font-size: 1.5rem;
+            color: var(--coral);
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--orange);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--teal);
+        }
+
+        .info-card h3 {
+            color: var(--dark-blue);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .info-card p, .info-card ul { font-size: 0.95rem; margin-bottom: 8px; }
+        .info-card ul { margin-left: 20px; margin-top: 5px; }
+
+        /* استایل اختصاصی برای بخش شواهد ATL */
+        .atl-evidence-box {
+            background-color: #fdf4e3;
+            border-left: 4px solid var(--orange);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .command-terms {
+            background-color: var(--yellow);
+            color: var(--dark-blue);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* --- IMAGE GALLERY (GRID) --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            grid-auto-rows: 220px; 
+        }
+
+        .evidence-photo {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            color: #888;
+            font-size: 0.8rem;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.4s ease; 
+        }
+
+        .evidence-photo.zoomed {
+            grid-column: span 2; 
+            grid-row: span 2;    
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4); 
+            border-color: var(--yellow);
+        }
+
+        .evidence-photo img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            z-index: 2;
+        }
+
+        .evidence-photo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .evidence-photo.zoomed img:hover {
+            transform: none;
+        }
+
+        @media (max-width: 600px) {
+            .evidence-photo.zoomed {
+                grid-column: span 1; 
+                grid-row: span 2;
+            }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--dark-blue);
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-top-bar">
+            <div class="logo-container">
+                <img src="IB3.png" alt="School Logos" class="school-logo" onerror="this.style.display='none'; this.parentElement.innerHTML='[IB3.png]';">
+            </div>
+            <div class="class-title-container">
+                <h1>Grade 8: Home Anchor Evidence</h1>
+                <div class="class-subtitle">DESIGN CLASS G8TH / 2026-2027</div>
+            </div>
+        </div>
+        <div class="ib-info">
+            <p><strong>Unit Title:</strong> Can an object be playful, even if it is not meant for playing with?</p>
+            <p><strong>Key Concepts:</strong> Identity, Form | <strong>Related Concepts:</strong> Culture, Empathy</p>
+            <p><strong>Global Context:</strong> Personal and Cultural Expression (Exploration: Ritual and Play)</p>
+            <p><strong>Statement of Inquiry:</strong> The form of a designed object can communicate identity and cultural connection, transforming a simple toy into a meaningful anchor for someone experiencing change or uncertainty.</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <button class="active" onclick="showPage('s1', this)">Session 1: Oct 4</button>
+        <button onclick="showPage('s2', this)">Session 2: Oct 11</button>
+        <button onclick="showPage('s3', this)">Session 3: Oct 18</button>
+        <button onclick="showPage('s4', this)">Session 4: Oct 25</button>
+        <button onclick="showPage('s5', this)">Session 5: Nov 1</button>
+        <button onclick="showPage('s6', this)">Session 6: Nov 8</button>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SESSION 1 -->
+        <div id="s1" class="session-page active">
+            <h2 class="session-title">Session 1: Oct 4, 2026 - Introduction to Home Anchor</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>Students were introduced to the unit and the concept of "Home Anchor". We discussed what reminds us of home, sharing personal experiences of leaving home (migration/war contexts). Students brainstormed and wrote down their own "Home Concepts" on a sheet.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>Create a "Home Concept Collage" using the provided structure to visually represent their ideas.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Self-Management (Organization) & Creative Thinking.</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students practiced organization and empathy by reflecting on personal memories and structuring their ideas into a concept for their collage.
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Identify</span>
+                        <span class="command-terms">Brainstorm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s1"></div>
+        </div>
+
+        <!-- SESSION 2 -->
+        <div id="s2" class="session-page">
+            <h2 class="session-title">Session 2: Oct 11, 2026 - Collages & Japanese Art Toys</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>Students presented their Home Concept collages. We then explored Japanese Art Toys (Kaiju, Sofubi, etc.) and famous designers from the textbook.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>Choose a designer, a specific toy, or a toy company. Complete one of the provided Google Slides templates (Analyzing Existing Products) to research their style.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Research (Information Literacy) & Communication.</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students demonstrated research skills by locating information about specific designers and analyzing their visual style using the provided Google Slides template.
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Describe</span>
+                        <span class="command-terms">Analyse</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s2"></div>
+        </div>
+
+        <!-- SESSION 3 -->
+        <div id="s3" class="session-page">
+            <h2 class="session-title">Session 3: Oct 18, 2026 - Persona & Empathy Map</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>We introduced the concept of "Persona". In groups, students categorized character cards using their own rules. We watched a video on Persona and discussed "Jobs-to-be-Done". Finally, students conducted pair interviews based on their Home Concept using an Empathy Map.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>No formal homework, but students prepared for the next step of their design journey based on the Empathy Map data.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Collaboration & Communication.</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students practiced active listening and empathy by interviewing their peers about their "Home Concept" and recording their thoughts on an Empathy Map.
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Classify</span>
+                        <span class="command-terms">Investigate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s3"></div>
+        </div>
+
+        <!-- SESSION 4 -->
+        <div class="session-page" id="s4">
+            <h2 class="session-title">Session 4: Oct 25, 2026 - Deep Dive into Persona</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>Students watched more detailed videos on Persona and Empathy Maps. They then created their own Persona profiles (representing themselves) based on the Empathy Maps they completed the previous week.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>Complete the written characteristics of their Persona based on the Empathy Map.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Self-Management (Reflection) & Critical Thinking.</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students demonstrated reflection by analyzing their own "Home Concept" to create a detailed Persona profile that captures their emotional needs and identity.
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Identify</span>
+                        <span class="command-terms">Explain</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s4"></div>
+        </div>
+
+        <!-- SESSION 5 -->
+        <div class="session-page" id="s5">
+            <h2 class="session-title">Session 5: Nov 1, 2026 - Initial Sketches & Design Brief</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>Based on their Persona and Empathy Map, students created initial sketches of their Art Toy. We watched a video explaining the "Design Brief".</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>Write a Design Brief and Persona. Finalize the Home Concept and Art Style (from chosen designer). Create a poster featuring the initial sketch and an AI-improved sketch of the toy.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Creative Thinking & Self-Management (Organization).</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students applied creative thinking to sketch their ideas and used organization skills to compile their research, Persona, and sketches into a comprehensive poster presentation.
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Design</span>
+                        <span class="command-terms">Create</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s5"></div>
+        </div>
+
+        <!-- SESSION 6 -->
+        <div class="session-page" id="s6">
+            <h2 class="session-title">Session 6: Nov 8, 2026 - Refining Ideas & NFC Planning</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Classroom Activity</h3>
+                    <p>Students continued improving their sketches. We discussed how to integrate QR codes or NFC tags into the final Art Toy. Initial explanations of NFC technology and production planning were provided.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Assignment</h3>
+                    <p>Finalize the production plan. Prepare for the physical making of the Art Toy, where the NFC integration will be taught in detail.</p>
+                </div>
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <h3>IB Connection, ATL & Command Terms</h3>
+                    <p><strong>ATL Focus:</strong> Self-Management (Time & Resources) & Transfer.</p>
+                    <div class="atl-evidence-box">
+                        <strong>Evidence:</strong> Students managed their resources and time by planning the physical creation of their toy. They also began to understand how to transfer their digital ideas into a physical object using emerging technology (NFC).
+                    </div>
+                    <p style="margin-top: 10px;"><strong>Command Terms:</strong></p>
+                    <div>
+                        <span class="command-terms">Develop</span>
+                        <span class="command-terms">Plan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery" id="gallery-s6"></div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>IB MYP Design Evidence Portfolio | Teacher: Reyhaneh Sanei | 2026-2027</p>
+    </footer>
+
+    <script>
+        // تعداد دقیق عکس‌ها بر اساس اطلاعات شما
+        const imageData = {
+            'gallery-s1': { prefix: '4OCTOBER', count: 7 },     
+            'gallery-s2': { prefix: '11OCTOBER', count: 36 },   
+            'gallery-s3': { prefix: '18OCTOBER', count: 16 },   
+            'gallery-s4': { prefix: '25OCTOBER', count: 6 },   
+            'gallery-s5': { prefix: '1NOVEMBER', count: 32 },   
+            'gallery-s6': { prefix: '8NOVEMBER', count: 23 }
+        };
+
+        function generateGalleries() {
+            for (const [galleryId, data] of Object.entries(imageData)) {
+                const galleryElement = document.getElementById(galleryId);
+                if (!galleryElement) continue;
+
+                let htmlContent = '';
+                for (let i = 1; i <= data.count; i++) {
+                    const fileName = `${data.prefix}${i}.jpg`;
+                    
+                    // کد loading="lazy" برای افزایش سرعت لود شدن
+                    htmlContent += `
+                        <div class="evidence-photo" onclick="toggleZoom(this)">
+                            <span>Looking for: <br><b>${fileName}</b></span>
+                            <img src="${fileName}" alt="Evidence" loading="lazy" onerror="this.style.display='none'">
+                        </div>
+                    `;
+                }
+                galleryElement.innerHTML = htmlContent;
+            }
+        }
+
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.session-page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(button => button.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            btn.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleZoom(photoDiv) {
+            const isAlreadyZoomed = photoDiv.classList.contains('zoomed');
+            document.querySelectorAll('.evidence-photo').forEach(el => el.classList.remove('zoomed'));
+            if (!isAlreadyZoomed) {
+                photoDiv.classList.add('zoomed');
+            }
+        }
+
+        window.onload = generateGalleries;
+    </script>
+</body>
+</html>
